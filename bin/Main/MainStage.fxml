@@ -18,7 +18,7 @@
          <children>
             <VBox id="imageBox" fx:id="imageBox" alignment="CENTER" layoutX="100.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="monsterImage" fitHeight="150.0" fitWidth="200.0" focusTraversable="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0">
+                  <ImageView fx:id="monsterImage" fitHeight="100.0" fitWidth="200.0" focusTraversable="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0">
                      <image>
                         <Image url="@../../res/monster02.png" />
                      </image>
@@ -57,7 +57,7 @@
             <Group>
                <children>
                   <Rectangle id="bgWord" fx:id="bgWord" arcHeight="5.0" arcWidth="5.0" fill="#ecf6ff" height="50.0" layoutX="50.0" layoutY="250.0" stroke="#cf7272" strokeType="INSIDE" strokeWidth="0.0" width="300.0" />
-                  <Text id="wordText" fx:id="wordText" layoutX="50.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type Master" textAlignment="CENTER" wrappingWidth="300.0">
+                  <Text id="wordText" fx:id="wordText" layoutX="50.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type Titan" textAlignment="CENTER" wrappingWidth="300.0">
                      <font>
                         <Font size="25.0" />
                      </font>
