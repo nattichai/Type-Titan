@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="600.0" maxWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.MyController">
+   <children>
+      <Pane fx:id="scene" focusTraversable="true" maxHeight="600.0" maxWidth="400.0" onKeyPressed="#input" prefHeight="600.0" prefWidth="400.0">
+         <children>
+            <VBox id="imageBox" fx:id="imageBox" alignment="CENTER" layoutX="100.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="monsterImage" fitHeight="150.0" fitWidth="200.0" focusTraversable="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0">
+                     <image>
+                        <Image url="@../../res/monster02.png" />
+                     </image>
+                  </ImageView>
+               </children></VBox>
+            <Group>
+               <children>
+                  <Text id="hpText" fx:id="hpText" layoutX="96.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="80.0 / 100.0" textAlignment="RIGHT" wrappingWidth="204.802978515625">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Text>
+                  <ProgressBar id="hpBar" fx:id="hpBar" layoutX="100.0" layoutY="30.0" prefHeight="20.0" prefWidth="200.0" progress="0.8" />
+               </children>
+            </Group>
+            <Button fx:id="fightBossBtn" defaultButton="true" focusTraversable="false" layoutX="310.0" layoutY="110.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="60.0" text="FIGHTBOSS" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+            <VBox alignment="CENTER" layoutX="30.0" layoutY="120.0" spacing="5.0">
+               <children>
+                  <Label layoutX="17.0" layoutY="107.0" text="Stage" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="stageText" layoutX="15.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1 / 5" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <Text fx:id="timerText" layoutX="30.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Group>
+               <children>
+                  <Rectangle id="bgWord" fx:id="bgWord" arcHeight="5.0" arcWidth="5.0" fill="#ecf6ff" height="50.0" layoutX="50.0" layoutY="250.0" stroke="#cf7272" strokeType="INSIDE" strokeWidth="0.0" width="300.0" />
+                  <Text id="wordText" fx:id="wordText" layoutX="50.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type Master" textAlignment="CENTER" wrappingWidth="300.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+            <Text fx:id="comboText" layoutX="304.0" layoutY="241.0" rotate="-10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100 combo" textAlignment="CENTER" wrappingWidth="70.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <TabPane fx:id="tabMenu" focusTraversable="false" layoutY="320.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#pressTab" pickOnBounds="false" prefHeight="280.0" prefWidth="400.0" side="BOTTOM" tabMaxHeight="400.0" tabMaxWidth="400.0" tabMinWidth="80.0">
+              <tabs>
+                <Tab closable="false" style="-fx-background-color: #ffd69d;" text="PLAYER">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Pane layoutX="13.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffd69d26" height="240.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="375.0" />
+                                    <GridPane alignment="CENTER" hgap="20.0" layoutX="56.0" layoutY="147.0" vgap="5.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <ImageView fx:id="skill01" fitHeight="60.0" fitWidth="60.0" layoutX="125.0" layoutY="476.0" onMouseClicked="#useSkill1" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../res/skill01.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="skill02" fitHeight="60.0" fitWidth="60.0" layoutX="41.0" layoutY="477.0" onMouseClicked="#useSkill2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../res/skill02.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="skill03" fitHeight="60.0" fitWidth="60.0" layoutX="217.0" layoutY="476.0" onMouseClicked="#useSkill3" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../res/skill03.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text fx:id="skill01Cd" strokeType="OUTSIDE" strokeWidth="0.0" text="hello 100" textAlignment="CENTER" wrappingWidth="75.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="skill02Cd" strokeType="OUTSIDE" strokeWidth="0.0" text="lolol 200" textAlignment="CENTER" wrappingWidth="75.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="skill03Cd" strokeType="OUTSIDE" strokeWidth="0.0" text="???? 300" textAlignment="CENTER" wrappingWidth="75.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </GridPane>
+                                    <GridPane alignment="CENTER" hgap="20.0" layoutX="30.0" layoutY="13.0" vgap="5.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Group layoutX="114.0" layoutY="-151.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <Text id="moneyText" fx:id="moneyText" layoutX="115.0" layoutY="534.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100.00 aa">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Text>
+                                                <Label id="moneyLabel" fx:id="moneyLabel" layoutX="43.0" layoutY="516.0" text="Money :">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </Group>
+                                          <Text fx:id="levelText" layoutX="334.0" layoutY="383.40234375" strokeType="OUTSIDE" strokeWidth="0.0" text="Level :  1">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <Group layoutX="-43.0" layoutY="-112.0" GridPane.rowIndex="1">
+                                             <children>
+                                                <Text id="dpsText" fx:id="dpsText" layoutX="95.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100.00 aa">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Text>
+                                                <Label id="dpsLabel" fx:id="dpsLabel" layoutX="44.0" layoutY="477.0" text="DPS :">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </Group>
+                                       </children>
+                                    </GridPane>
+                                    <Group layoutX="-9.0" layoutY="-315.0">
+                                       <children>
+                                          <Button id="upgradeBtn" fx:id="upgradeBtn" alignment="TOP_CENTER" focusTraversable="false" layoutX="48.0" layoutY="409.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="300.0" text="Upgrade (space bar)" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="SukhumvitSet-Thin" size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Label layoutX="90.0" layoutY="434.0" text="Cost :">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Text fx:id="costText" layoutX="137.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="50.00 aa">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                          </Text>
+                                          <Label layoutX="220.0" layoutY="434.0" text="DPS+ :">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Text fx:id="dpsPlusText" layoutX="267.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.00 aa">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </Group>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab closable="false" style="-fx-background-color: #9ecfff;" text="ARTIFACT">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Pane layoutX="13.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9ecfff26" height="240.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="375.0" />
+                                    <Text layoutX="56.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMMING SOON" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="32.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab closable="false" style="-fx-background-color: #ff9e9e;" text="QUEST">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Pane layoutX="13.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff9e9e26" height="240.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="375.0" />
+                                    <Text layoutX="56.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMMING SOON" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="32.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab closable="false" style="-fx-background-color: #b1ff9e;" text="EXPLORE">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Pane layoutX="13.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b1ff9e26" height="240.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="375.0" />
+                                    <Text layoutX="56.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMMING SOON" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="32.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            <MenuButton alignment="CENTER" contentDisplay="RIGHT" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="320.0" layoutY="18.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onContextMenuRequested="#pressTab" textAlignment="CENTER">
+              <items>
+                <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button contentDisplay="CENTER" focusTraversable="false" minWidth="54.0" mnemonicParsing="false" onAction="#wordOnly" style="-fx-background-color: #ffddff;" text="word" textAlignment="CENTER" />
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button contentDisplay="CENTER" focusTraversable="false" minWidth="54.0" mnemonicParsing="false" onAction="#arrowOnly" style="-fx-background-color: #ffccff;" text="arrow" textAlignment="CENTER" />
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button contentDisplay="CENTER" focusTraversable="false" minWidth="54.0" mnemonicParsing="false" onAction="#bothWordAndArrow" style="-fx-background-color: #ffbbff;" text="w + a" textAlignment="CENTER" />
+                     </graphic></MenuItem>
+                <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button contentDisplay="CENTER" focusTraversable="false" minWidth="54.0" mnemonicParsing="false" onAction="#newGame" style="-fx-background-color: #ffaaff;" text="reset" textAlignment="CENTER" />
+                     </graphic>
+                  </MenuItem>
+              </items>
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../res/setting1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
