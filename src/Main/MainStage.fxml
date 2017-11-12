@@ -20,7 +20,7 @@
                <children>
                   <ImageView fx:id="monsterImage" fitHeight="100.0" fitWidth="200.0" focusTraversable="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0">
                      <image>
-                        <Image url="@../../res/monster02.png" />
+                        <Image url="@/res/monster01.png" />
                      </image>
                   </ImageView>
                </children></VBox>
@@ -91,17 +91,17 @@
                                        <children>
                                           <ImageView fx:id="skill01" fitHeight="60.0" fitWidth="60.0" layoutX="125.0" layoutY="476.0" onMouseClicked="#useSkill1" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../../res/skill01.png" />
+                                                <Image url="@/res/skill01.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="skill02" fitHeight="60.0" fitWidth="60.0" layoutX="41.0" layoutY="477.0" onMouseClicked="#useSkill2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../../res/skill02.png" />
+                                                <Image url="@/res/skill02.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fx:id="skill03" fitHeight="60.0" fitWidth="60.0" layoutX="217.0" layoutY="476.0" onMouseClicked="#useSkill3" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@../../res/skill03.png" />
+                                                <Image url="@/res/skill03.png" />
                                              </image>
                                           </ImageView>
                                           <Text fx:id="skill01Cd" strokeType="OUTSIDE" strokeWidth="0.0" text="hello 100" textAlignment="CENTER" wrappingWidth="75.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -282,7 +282,7 @@
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../res/setting1.png" />
+                        <Image url="@/res/setting.png" />
                      </image>
                   </ImageView>
                </graphic>
