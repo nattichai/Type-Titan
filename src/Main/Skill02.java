@@ -7,8 +7,9 @@ public class Skill02 extends Skill{
 	MyController myController;
 
 	public Skill02(int idSkill, int cd, MyController mc) {
-		super(cd);
+		super(idSkill, cd);
 		myController = mc;
+		myController.skill02.setImage(image);
 		decreaseCooldown(0);
 	}
 	

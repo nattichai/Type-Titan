@@ -11,33 +11,27 @@ public class Word {
 	
 	static String[] words = null;
     static List<String> wordList = new ArrayList<String>();
-    static {try {
-        @SuppressWarnings("resource")
-		BufferedReader buffer = new BufferedReader(new FileReader(new File("").getAbsolutePath() + "/res/words.txt"));
-        String line;
-        while ((line = buffer.readLine()) != null) {
-            line = line.trim();
-            if ((line.length()!=0)) {
-                wordList.add(line);
-            }
-        }
-        words = (String[])wordList.toArray(new String[wordList.size()]);
-    } catch (Exception e) {
-		e.printStackTrace();
-	}};
-	static String word;
+	String word;
 	static String arrow = "⇦⇨⇧⇩";
 
 	public Word(){
+		BufferedReader buffer = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/" + "words.txt")));
+//		BufferedReader buffer = new BufferedReader(new FileReader(new File("").getAbsolutePath() + "/res/words.txt"));
+        String line;
+        try {
+			while ((line = buffer.readLine()) != null) {
+			    line = line.trim();
+			    if ((line.length()!=0)) {
+			        wordList.add(line);
+			    }
+			}
+		} catch (IOException e) {}
+        words = (String[])wordList.toArray(new String[wordList.size()]);
 		word = words[new Random().nextInt(words.length)];
 	}
 	
-	public Word(String w){
-		word = w;
-	}
-	
 	@SuppressWarnings("static-access")
-	public static String randomWord(MyController myController){
+	public String randomWord(MyController myController){
 		if ((new Random().nextBoolean() || myController.wordMode == 2) && myController.wordMode != 1) {
 			myController.wordText.setFont(new Font(32));
 			word = "";

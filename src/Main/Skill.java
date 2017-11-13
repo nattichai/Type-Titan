@@ -7,8 +7,9 @@ public class Skill{
 	Image image;
 	int cooldown;
 
-	public Skill(int cd) {
+	public Skill(int idSkill, int cd) {
 		cooldown = cd;
+		image = getSkillImage(idSkill);
 	}
 	
 	public Image getSkillImage(int idSkill){

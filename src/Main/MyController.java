@@ -23,6 +23,7 @@ public class MyController implements Initializable{
 	
 //	scene
 	@FXML static Pane scene;
+	@FXML ImageView settingImage;
 //	monster area
 	@FXML Text timerText;
 	@FXML Text hpText;
@@ -52,6 +53,7 @@ public class MyController implements Initializable{
 	@FXML Text skill03Cd;
 //	save data
 	static String[] save;
+	static int cnt;
 //	monster area
 	static Monster monster;
 	static double monsterMaxHp;
@@ -61,6 +63,7 @@ public class MyController implements Initializable{
 	static int maxStage;
 	static int timer;
 //	word area
+	static Word words;
 	static String word;
 	static int currentChar;
 	static int comboCount;
@@ -84,6 +87,12 @@ public class MyController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources){
 		try {	loadGame();			} catch (Exception e1) {}
+		if (cnt < 15) {	//save not found
+			newGame();
+			return;
+		}
+//		setting initialization
+		settingImage.setImage(new Image(ClassLoader.getSystemResource("setting.png").toString()));
 //		monster initialization
 		monsterMaxHp = Double.parseDouble(save[0]);
 		newMonster();
@@ -91,6 +100,7 @@ public class MyController implements Initializable{
 		setTimer(20, false);
 		setStage(Integer.parseInt(save[3]));
 //		word initialization
+		words = new Word();
 		wordMode = (Integer.parseInt(save[14]));
 		newWord();
 		setComboCount(Integer.parseInt(save[5]));
@@ -272,7 +282,7 @@ public class MyController implements Initializable{
 
 	public void newWord(){
 		bgWord.setFill(Color.LIGHTBLUE);
-		word = Word.randomWord(this);
+		word = words.randomWord(this);
 		wordText.setText(word);
 		currentChar = 0;
 		comboMiss = false;
@@ -372,6 +382,8 @@ public class MyController implements Initializable{
 	}
 	
 	public void newGame() {
+//		setting reset
+		settingImage.setImage(new Image(ClassLoader.getSystemResource("setting.png").toString()));
 //		monster reset
 		monsterMaxHp = 50;
 		newMonster();
@@ -379,6 +391,7 @@ public class MyController implements Initializable{
 		setTimer(20, false);
 		setStage(1);
 //		word reset
+		words = new Word();
 		wordMode = 3;
 		newWord();
 		setComboCount(0);
@@ -393,15 +406,23 @@ public class MyController implements Initializable{
 		skill2 = new Skill02(2, 200, this);
 		skill3 = new Skill03(3, 300, this);
 //		timeline reset
+		timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
+			setTimer(timer - 1, true);
+			if (timer <= 0) {
+				timeline.stop();
+				setTimer(20, false);
+				setStage(maxStage);
+			}
+		}));
+		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.stop();
 	}
 	
 	@SuppressWarnings("resource")
-	public static void loadGame() throws Exception {
+	public void loadGame() throws Exception {
 		File file = new File("save.txt");
 		FileReader reader = null;
 		char[] r = new char[1000];
-		int cnt = 0;
 		file.createNewFile();
 		reader = new FileReader(file);
 		reader.read(r);
