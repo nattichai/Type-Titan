@@ -1,14 +1,14 @@
-package Main;
+package skill;
 
 import javafx.scene.image.Image;
 
 public class Skill{
 	
 	Image image;
-	int cooldown;
+	private int cooldown;
 
 	public Skill(int idSkill, int cd) {
-		cooldown = cd;
+		setCooldown(cd);
 		image = getSkillImage(idSkill);
 	}
 	
@@ -18,9 +18,17 @@ public class Skill{
 	}
 	
 	public void decreaseCooldown(int c) {
-		cooldown -= c;
-		if (cooldown < 0)
-			cooldown = 0;
+		setCooldown(getCooldown() - c);
+		if (getCooldown() < 0)
+			setCooldown(0);
+	}
+
+	public int getCooldown() {
+		return cooldown;
+	}
+
+	public void setCooldown(int cooldown) {
+		this.cooldown = cooldown;
 	}
 
 }

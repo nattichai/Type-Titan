@@ -11,8 +11,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import controller.*?>
 
-<AnchorPane maxHeight="600.0" maxWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.MyController">
+<AnchorPane maxHeight="600.0" maxWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MyController">
    <children>
       <Pane fx:id="scene" focusTraversable="true" maxHeight="600.0" maxWidth="400.0" onKeyPressed="#input" prefHeight="600.0" prefWidth="400.0">
          <children>
@@ -89,32 +90,32 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ImageView fx:id="skill01" fitHeight="60.0" fitWidth="60.0" layoutX="125.0" layoutY="476.0" onMouseClicked="#useSkill1" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="skillHelloImage" fitHeight="60.0" fitWidth="60.0" layoutX="125.0" layoutY="476.0" onMouseClicked="#useSkill1" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="file:res/skill01.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="skill02" fitHeight="60.0" fitWidth="60.0" layoutX="41.0" layoutY="477.0" onMouseClicked="#useSkill2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="skillLolImage" fitHeight="60.0" fitWidth="60.0" layoutX="41.0" layoutY="477.0" onMouseClicked="#useSkill2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="file:res/skill02.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fx:id="skill03" fitHeight="60.0" fitWidth="60.0" layoutX="217.0" layoutY="476.0" onMouseClicked="#useSkill3" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="skillQuestionImage" fitHeight="60.0" fitWidth="60.0" layoutX="217.0" layoutY="476.0" onMouseClicked="#useSkill3" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="file:res/skill03.png" />
                                              </image>
                                           </ImageView>
-                                          <Text fx:id="skill01Cd" strokeType="OUTSIDE" strokeWidth="0.0" text="hello 100" textAlignment="CENTER" wrappingWidth="75.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <Text fx:id="skillHelloText" strokeType="OUTSIDE" strokeWidth="0.0" text="hello 100" textAlignment="CENTER" wrappingWidth="75.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Text>
-                                          <Text fx:id="skill02Cd" strokeType="OUTSIDE" strokeWidth="0.0" text="lolol 200" textAlignment="CENTER" wrappingWidth="75.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <Text fx:id="skillLolText" strokeType="OUTSIDE" strokeWidth="0.0" text="lolol 200" textAlignment="CENTER" wrappingWidth="75.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Text>
-                                          <Text fx:id="skill03Cd" strokeType="OUTSIDE" strokeWidth="0.0" text="???? 300" textAlignment="CENTER" wrappingWidth="75.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <Text fx:id="skillQuestionText" strokeType="OUTSIDE" strokeWidth="0.0" text="???? 300" textAlignment="CENTER" wrappingWidth="75.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
@@ -208,7 +209,7 @@
                               <Pane layoutX="13.0">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9ecfff26" height="240.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="375.0" />
-                                    <Text layoutX="56.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMMING SOON" textAlignment="CENTER">
+                                    <Text layoutX="70.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMING SOON" textAlignment="CENTER">
                                        <font>
                                           <Font size="32.0" />
                                        </font>
@@ -225,7 +226,7 @@
                               <Pane layoutX="13.0">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff9e9e26" height="240.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="375.0" />
-                                    <Text layoutX="56.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMMING SOON" textAlignment="CENTER">
+                                    <Text layoutX="70.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMING SOON" textAlignment="CENTER">
                                        <font>
                                           <Font size="32.0" />
                                        </font>
@@ -243,7 +244,7 @@
                               <Pane layoutX="13.0">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b1ff9e26" height="240.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="375.0" />
-                                    <Text layoutX="56.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMMING SOON" textAlignment="CENTER">
+                                    <Text layoutX="70.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMING SOON" textAlignment="CENTER">
                                        <font>
                                           <Font size="32.0" />
                                        </font>

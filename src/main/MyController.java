@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -19,70 +19,75 @@ import javafx.scene.shape.*;
 import javafx.scene.text.*;
 import javafx.util.Duration;
 
+import monster.Monster;
+import skill.*;
+import word.Word;
+
 public class MyController implements Initializable{
 	
 //	scene
-	@FXML static Pane scene;
-	@FXML ImageView settingImage;
+	@FXML private static Pane scene;
+	@FXML private ImageView settingImage;
 //	monster area
-	@FXML Text timerText;
-	@FXML Text hpText;
-	@FXML ProgressBar hpBar;
-	@FXML Text stageText;
-	@FXML ImageView monsterImage;
-	@FXML Button fightBossBtn;
+	@FXML private Text timerText;
+	@FXML private Text hpText;
+	@FXML private ProgressBar hpBar;
+	@FXML private Text stageText;
+	@FXML private ImageView monsterImage;
+	@FXML private Button fightBossBtn;
 //	word area
-	@FXML Text wordText;
-	@FXML Rectangle bgWord;
-	@FXML Text comboText;
+	@FXML private Text wordText;
+	@FXML private Rectangle bgWord;
+	@FXML private Text comboText;
 //	tab menu
-	@FXML TabPane tabMenu;
+	@FXML private TabPane tabMenu;
 //	player area
-	@FXML Text levelText;
-	@FXML Text dpsText;
-	@FXML Text moneyText;
-	@FXML Text costText;
-	@FXML Text dpsPlusText;
-	@FXML Button upgradeBtn;
+	@FXML private Text levelText;
+	@FXML private Text dpsText;
+	@FXML private Text moneyText;
+	@FXML private Text costText;
+	@FXML private Text dpsPlusText;
+	@FXML private Button upgradeBtn;
 //	skill area
-	@FXML ImageView skill01;
-	@FXML ImageView skill02;
-	@FXML ImageView skill03;
-	@FXML Text skill01Cd;
-	@FXML Text skill02Cd;
-	@FXML Text skill03Cd;
+	@FXML private ImageView skillHelloImage;
+	@FXML private ImageView skillLolImage;
+	@FXML private ImageView skillQuestionImage;
+	@FXML private Text skillHelloText;
+	@FXML private Text skillLolText;
+	@FXML private Text skillQuestionText;
+	
 //	save data
-	static String[] save;
-	static int cnt;
+	private static String[] save;
+	private static int cnt;
 //	monster area
-	static Monster monster;
-	static double monsterMaxHp;
-	static boolean canFightBoss;
-	static boolean isFightBoss;
-	static int stage;
-	static int maxStage;
-	static int timer;
+	private static Monster monster;
+	private static double monsterMaxHp;
+	private static boolean canFightBoss;
+	private static boolean isFightBoss;
+	private static int stage;
+	private static int maxStage;
+	private static int timer;
 //	word area
-	static Word words;
-	static String word;
-	static int currentChar;
-	static int comboCount;
-	static boolean comboMiss;
-	static int wordMode;
+	private static Word words;
+	private static String word;
+	private static int currentChar;
+	private static int comboCount;
+	private static boolean comboMiss;
+	private static int wordMode;
 //	player area
-	static int level;
-	static double baseDps;
-	static double dps;
-	static double money;
-	static boolean canUpgrade;
-	static double cost;
-	static double dpsPlus;
+	private static int level;
+	private static double baseDps;
+	private static double dps;
+	private static double money;
+	private static boolean canUpgrade;
+	private static double cost;
+	private static double dpsPlus;
 //	skill area
-	static Skill01 skill1;
-	static Skill02 skill2;
-	static Skill03 skill3;
+	private static SkillHello skillHello;
+	private static SkillLol skillLol;
+	private static SkillQuestion skillQuestion;
 //	timeline
-	static Timeline timeline;
+	private static Timeline timeline;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources){
@@ -111,9 +116,9 @@ public class MyController implements Initializable{
 		addDps(Double.parseDouble(save[7]));
 		addMoney(Double.parseDouble(save[8]));
 //		skill initialization
-		skill1 = new Skill01(1, Integer.parseInt(save[11]), this);
-		skill2 = new Skill02(2, Integer.parseInt(save[12]), this);
-		skill3 = new Skill03(3, Integer.parseInt(save[13]), this);
+		skillHello = new SkillHello(1, Integer.parseInt(save[11]), this);
+		skillLol = new SkillLol(2, Integer.parseInt(save[12]), this);
+		skillQuestion = new SkillQuestion(3, Integer.parseInt(save[13]), this);
 //		timeline initialization
 		timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
 			setTimer(timer - 1, true);
@@ -162,11 +167,11 @@ public class MyController implements Initializable{
 		bgWord.setFill(Color.LIGHTGREEN);
 		currentChar ++;
 		wordText.setText(word.substring(currentChar));
-		skill1.decreaseCooldown(1);
-		skill2.decreaseCooldown(1);
-		skill3.decreaseCooldown(1);
+		skillHello.decreaseCooldown(1);
+		skillLol.decreaseCooldown(1);
+		skillQuestion.decreaseCooldown(1);
 		monster.decreaseHp(dps);
-		if (monster.hp <= 0) {
+		if (monster.getHp() <= 0) {
 			win();
 		}
 		if (currentChar >= word.length()) {	//complete word
@@ -178,7 +183,7 @@ public class MyController implements Initializable{
 	}
 	
 	private void win() {
-		addMoney(monster.maxHp);
+		addMoney(monster.getMaxHp());
 		if (stage != maxStage) {		//not be last stage
 			monsterMaxHp *= 1.5;
 		}
@@ -213,7 +218,7 @@ public class MyController implements Initializable{
 	public void newMonster(){
 		monster = new Monster(monsterMaxHp, this);
 		monsterImage.setFitHeight(100);
-		monsterImage.setImage(monster.image);
+		monsterImage.setImage(monster.getImage());
 		setHpBar();
 		if (isFightBoss == false)
 			stageText.setText(stage + " / " + maxStage);
@@ -222,8 +227,8 @@ public class MyController implements Initializable{
 	}
 	
 	public void setHpBar() {
-		hpBar.setProgress(monster.hp / monster.maxHp);
-		hpText.setText(doubleToText(monster.hp) + " / " + doubleToText(monster.maxHp));
+		hpBar.setProgress(monster.getHp() / monster.getMaxHp());
+		hpText.setText(doubleToText(monster.getHp()) + " / " + doubleToText(monster.getMaxHp()));
 	}
 	
 	public void newBoss() {
@@ -367,18 +372,18 @@ public class MyController implements Initializable{
 	}
 	
 	public void useSkill1() {
-		if (skill1.cooldown == 0)
-			skill1.useSkill();
+		if (skillHello.getCooldown() == 0)
+			skillHello.useSkill();
 	}
 	
 	public void useSkill2() {
-		if (skill2.cooldown == 0)
-			skill2.useSkill();
+		if (skillLol.getCooldown() == 0)
+			skillLol.useSkill();
 	}
 	
 	public void useSkill3() {
-		if (skill3.cooldown == 0)
-			skill3.useSkill();
+		if (skillQuestion.getCooldown() == 0)
+			skillQuestion.useSkill();
 	}
 	
 	public void newGame() {
@@ -402,9 +407,9 @@ public class MyController implements Initializable{
 		addDps(-dps + 10);
 		addMoney(-money);
 //		skill reset
-		skill1 = new Skill01(1, 100, this);
-		skill2 = new Skill02(2, 200, this);
-		skill3 = new Skill03(3, 300, this);
+		skillHello = new SkillHello(1, 100, this);
+		skillLol = new SkillLol(2, 200, this);
+		skillQuestion = new SkillQuestion(3, 300, this);
 //		timeline reset
 		timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
 			setTimer(timer - 1, true);
@@ -455,12 +460,220 @@ public class MyController implements Initializable{
 						money + "\n" +
 						cost + "\n" +
 						dpsPlus + "\n" +
-						skill1.cooldown + "\n" +
-						skill2.cooldown + "\n" +
-						skill3.cooldown + "\n" +
+						skillHello.getCooldown() + "\n" +
+						skillLol.getCooldown() + "\n" +
+						skillQuestion.getCooldown() + "\n" +
 						wordMode + "\n"		);
 		writer.flush();
 		writer.close();
+	}
+	
+	public static Pane getScene() {
+		return scene;
+	}
+
+	public ImageView getSettingImage() {
+		return settingImage;
+	}
+
+	public Text getTimerText() {
+		return timerText;
+	}
+
+	public Text getHpText() {
+		return hpText;
+	}
+
+	public ProgressBar getHpBar() {
+		return hpBar;
+	}
+
+	public Text getStageText() {
+		return stageText;
+	}
+
+	public ImageView getMonsterImage() {
+		return monsterImage;
+	}
+
+	public Button getFightBossBtn() {
+		return fightBossBtn;
+	}
+
+	public Text getWordText() {
+		return wordText;
+	}
+
+	public Rectangle getBgWord() {
+		return bgWord;
+	}
+
+	public Text getComboText() {
+		return comboText;
+	}
+
+	public TabPane getTabMenu() {
+		return tabMenu;
+	}
+
+	public Text getLevelText() {
+		return levelText;
+	}
+
+	public Text getDpsText() {
+		return dpsText;
+	}
+
+	public Text getMoneyText() {
+		return moneyText;
+	}
+
+	public Text getCostText() {
+		return costText;
+	}
+
+	public Text getDpsPlusText() {
+		return dpsPlusText;
+	}
+
+	public Button getUpgradeBtn() {
+		return upgradeBtn;
+	}
+
+	public ImageView getSkillHelloImage() {
+		return skillHelloImage;
+	}
+
+	public ImageView getSkillLolImage() {
+		return skillLolImage;
+	}
+
+	public ImageView getSkillQuestionImage() {
+		return skillQuestionImage;
+	}
+
+	public Text getSkillHelloText() {
+		return skillHelloText;
+	}
+
+	public Text getSkillLolText() {
+		return skillLolText;
+	}
+
+	public Text getSkillQuestionText() {
+		return skillQuestionText;
+	}
+
+	public static String[] getSave() {
+		return save;
+	}
+
+	public static int getCnt() {
+		return cnt;
+	}
+
+	public static Monster getMonster() {
+		return monster;
+	}
+
+	public static double getMonsterMaxHp() {
+		return monsterMaxHp;
+	}
+
+	public static boolean isCanFightBoss() {
+		return canFightBoss;
+	}
+
+	public static boolean isFightBoss() {
+		return isFightBoss;
+	}
+
+	public static int getStage() {
+		return stage;
+	}
+
+	public static int getMaxStage() {
+		return maxStage;
+	}
+
+	public static int getTimer() {
+		return timer;
+	}
+
+	public static Word getWords() {
+		return words;
+	}
+
+	public String getWord() {
+		return word;
+	}
+
+	public int getCurrentChar() {
+		return currentChar;
+	}
+
+	public static int getComboCount() {
+		return comboCount;
+	}
+
+	public static boolean isComboMiss() {
+		return comboMiss;
+	}
+
+	public static int getWordMode() {
+		return wordMode;
+	}
+
+	public static int getLevel() {
+		return level;
+	}
+
+	public static double getBaseDps() {
+		return baseDps;
+	}
+
+	public static double getDps() {
+		return dps;
+	}
+
+	public static double getMoney() {
+		return money;
+	}
+
+	public static boolean isCanUpgrade() {
+		return canUpgrade;
+	}
+
+	public static double getCost() {
+		return cost;
+	}
+
+	public static double getDpsPlus() {
+		return dpsPlus;
+	}
+
+	public static SkillHello getSkillHello() {
+		return skillHello;
+	}
+
+	public static SkillLol getSkillLol() {
+		return skillLol;
+	}
+
+	public static SkillQuestion getSkillQuestion() {
+		return skillQuestion;
+	}
+
+	public static Timeline getTimeline() {
+		return timeline;
+	}
+
+	public void setCurrentChar(int c) {
+		currentChar = c;
+	}
+
+	public void setWord(String w) {
+		word = w;
 	}
 
 }

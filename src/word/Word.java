@@ -1,4 +1,4 @@
-package Main;
+package word;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import javafx.scene.text.Font;
+import main.MyController;
 
 public class Word {
 	
@@ -32,15 +33,15 @@ public class Word {
 	
 	@SuppressWarnings("static-access")
 	public String randomWord(MyController myController){
-		if ((new Random().nextBoolean() || myController.wordMode == 2) && myController.wordMode != 1) {
-			myController.wordText.setFont(new Font(32));
+		if ((new Random().nextBoolean() || myController.getWordMode() == 2) && myController.getWordMode() != 1) {
+			myController.getWordText().setFont(new Font(32));
 			word = "";
 			for (int i = 0; i < 8; ++i) {
 				word += arrow.charAt(new Random().nextInt(4));
 			}
 			return word;
 		} else {
-			myController.wordText.setFont(new Font(25));
+			myController.getWordText().setFont(new Font(25));
 			return words[new Random().nextInt(words.length)];
 		}
 	}
